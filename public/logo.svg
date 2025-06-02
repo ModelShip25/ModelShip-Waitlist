@@ -1,0 +1,6 @@
+<svg width="120" height="30" viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="15" cy="15" r="6" fill="#FF4B5C"/>
+  <circle cx="6" cy="24" r="6" fill="#8C52FF"/>
+  <circle cx="24" cy="24" r="6" fill="#4F46E5"/>
+  <text x="35" y="20" font-family="Inter, sans-serif" font-size="16" fill="#FFFFFF">ModelShip</text>
+</svg>
