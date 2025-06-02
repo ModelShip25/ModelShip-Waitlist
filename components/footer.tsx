@@ -1,4 +1,5 @@
 import Logo from "./logo"
+import { FaTwitter, FaFacebook, FaLinkedin, FaGithub, FaInstagram, FaDiscord } from "react-icons/fa"
 
 export default function Footer() {
   return (
@@ -6,6 +7,31 @@ export default function Footer() {
       <div className="container mx-auto max-w-6xl flex flex-col md:flex-row justify-between items-center">
         <div className="mb-4 md:mb-0">
           <Logo />
+        </div>
+        <div className="flex flex-col md:flex-row md:items-center md:gap-8 w-full md:w-auto md:justify-end">
+          <div className="flex flex-col items-center md:items-end">
+            <span className="text-gray-300 text-sm mb-1">Follow us on all social accounts and join our community</span>
+            <div className="flex gap-4 mt-1">
+              <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <FaTwitter className="text-gray-400 hover:text-blue-400 transition-colors" size={24} />
+              </a>
+              <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <FaFacebook className="text-gray-400 hover:text-blue-600 transition-colors" size={24} />
+              </a>
+              <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <FaLinkedin className="text-gray-400 hover:text-blue-700 transition-colors" size={24} />
+              </a>
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <FaGithub className="text-gray-400 hover:text-gray-100 transition-colors" size={24} />
+              </a>
+              <a href="https://www.instagram.com/modelshipai/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <FaInstagram className="text-gray-400 hover:text-pink-500 transition-colors" size={24} />
+              </a>
+              <a href="https://discord.gg/modelship" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+                <FaDiscord className="text-gray-400 hover:text-gray-100 transition-colors" size={24} />
+              </a>
+            </div>
+          </div>
         </div>
         <div className="text-gray-400 text-sm">&copy; {new Date().getFullYear()} ModelShip. All rights reserved.</div>
       </div>
