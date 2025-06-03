@@ -1,5 +1,5 @@
 import Logo from "./logo"
-import { FaTwitter, FaFacebook, FaLinkedin, FaGithub, FaInstagram, FaDiscord } from "react-icons/fa"
+import { FaTwitter, FaFacebook, FaLinkedin, FaGithub, FaInstagram, FaDiscord, FaYoutube } from "react-icons/fa"
 
 export default function Footer() {
   return (
@@ -29,6 +29,9 @@ export default function Footer() {
               </a>
               <a href="https://discord.gg/modelship" target="_blank" rel="noopener noreferrer" aria-label="Discord">
                 <FaDiscord className="text-gray-400 hover:text-gray-100 transition-colors" size={24} />
+              </a>
+              <a href="https://www.youtube.com/@modelshipai" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <FaYoutube className="text-gray-400 hover:text-red-500 transition-colors" size={24} />
               </a>
             </div>
           </div>
