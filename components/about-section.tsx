@@ -2,8 +2,6 @@
 
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import shinaayomi from "@/public/shinaayomi.jpg"
-import daramola from "@/public/daramola.jpg"
 
 export default function AboutSection() {
   const [ref, inView] = useInView({
@@ -11,52 +9,94 @@ export default function AboutSection() {
     threshold: 0.1,
   })
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+      },
+    },
+  }
+
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[#0B0B1F]">
-      <div className="container mx-auto max-w-4xl">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[#0B0B1F] relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6 }}
+          className="absolute -top-1/2 left-1/2 w-96 h-96 rounded-full bg-gradient-to-r from-[#6F42C1]/10 to-[#4F46E5]/10 blur-3xl"
+          animate={{
+            x: [0, -30, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{
+            repeat: Number.POSITIVE_INFINITY,
+            duration: 20,
+            ease: "easeInOut",
+          }}
+        />
+      </div>
+
+      <div className="container mx-auto max-w-6xl relative z-10">
+        <motion.div
           ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
-            Why We're Building ModelShip
-          </h2>
+          <motion.h2
+            variants={itemVariants}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-gray-300"
+          >
+            Meet Our Team
+          </motion.h2>
+          <motion.div
+            className="w-24 h-1 bg-gradient-to-r from-[#6F42C1] to-[#4F46E5] mx-auto rounded-full mb-16"
+            initial={{ width: 0 }}
+            animate={inView ? { width: 96 } : { width: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          />
 
           <motion.div
-            className="bg-gradient-to-br from-[#1a1a3a] to-[#0B0B1F] p-8 rounded-xl border border-[#3B3A58]/30"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={itemVariants}
+            className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-2xl mx-auto"
           >
-            <blockquote className="text-lg md:text-xl text-gray-300 italic">
-              "We've lived the pain of labeling data manually while trying to train AI models. ModelShip is our solution
-              to make data prep dramatically faster — but still keep humans in control."
-            </blockquote>
-          </motion.div>
-
-          <motion.div
-            className="mt-12 flex flex-col md:flex-row justify-center items-center gap-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
+            {/* First Co-founder */}
             <div className="flex flex-col items-center">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-r from-[#6F42C1] to-[#4F46E5] flex items-center justify-center mb-4">
-                <img src="/shinaayomi.jpg" alt="Shinaayomi" className="w-full h-full object-cover rounded-full" />
+              <div className="w-32 h-32 rounded-full bg-gradient-to-r from-[#6F42C1] to-[#4F46E5] p-1 mb-4">
+                <img
+                  src="/shinaayomi.jpg"
+                  alt="Olanrewaju Shinaayomi"
+                  className="w-full h-full rounded-full object-cover"
+                />
               </div>
-              <h3 className="text-lg font-medium">Olanrewaju Shinaayomi</h3>
-              <p className="text-gray-400">Co-Founder</p>
+              <h3 className="text-xl text-white font-medium mb-1">Olanrewaju Shinaayomi</h3>
+              <p className="text-[#8C52FF]">Co-Founder</p>
             </div>
 
+            {/* Second Co-founder */}
             <div className="flex flex-col items-center">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-r from-[#6F42C1] to-[#4F46E5] flex items-center justify-center mb-4">
-                <img src="/daramola.jpg" alt="Daramola" className="w-full h-full object-cover rounded-full" />
+              <div className="w-32 h-32 rounded-full bg-gradient-to-r from-[#6F42C1] to-[#4F46E5] p-1 mb-4">
+                <img
+                  src="/BroD.jpg"
+                  alt="Daramola Daniel"
+                  className="w-full h-full rounded-full object-cover"
+                />
               </div>
-              <h3 className="text-lg font-medium">Daramola Daniel</h3>
-              <p className="text-gray-400">Co-Founder</p>
+              <h3 className="text-xl text-white font-medium mb-1">Daramola Daniel</h3>
+              <p className="text-[#8C52FF]">Co-Founder</p>
             </div>
           </motion.div>
         </motion.div>

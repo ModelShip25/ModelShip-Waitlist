@@ -1,7 +1,8 @@
 "use client"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useEffect, useState } from "react"
 import Logo from "./logo"
+import { Users, Clock, Zap, Award } from "lucide-react"
 
 export default function HeroSection() {
   const ref = useRef(null)
@@ -12,6 +13,33 @@ export default function HeroSection() {
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+
+  // Countdown timer state
+  const [timeLeft, setTimeLeft] = useState({
+    days: 30,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  })
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.seconds > 0) {
+          return { ...prev, seconds: prev.seconds - 1 }
+        } else if (prev.minutes > 0) {
+          return { ...prev, minutes: prev.minutes - 1, seconds: 59 }
+        } else if (prev.hours > 0) {
+          return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 }
+        } else if (prev.days > 0) {
+          return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 }
+        }
+        return prev
+      })
+    }, 1000)
+
+    return () => clearInterval(timer)
+  }, [])
 
   const handleScrollToWaitlist = () => {
     const waitlistSection = document.getElementById("waitlist")
@@ -132,8 +160,21 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="container mx-auto max-w-6xl relative z-10">
-        <motion.div className="flex justify-center mb-12" variants={floatingVariants} animate="animate">
+        <motion.div className="flex justify-center mb-8" variants={floatingVariants} animate="animate">
           <Logo variant="hero" />
+        </motion.div>
+
+        {/* Early Access Badge */}
+        <motion.div 
+          className="flex justify-center mb-6"
+          variants={itemVariants}
+        >
+          <div className="bg-gradient-to-r from-[#6F42C1]/20 to-[#4F46E5]/20 backdrop-blur-sm rounded-full px-4 py-2 border border-[#6F42C1]/30">
+            <span className="text-[#6F42C1] font-medium flex items-center">
+              <Award className="w-4 h-4 mr-2" />
+              Limited Beta Access Now Available
+            </span>
+          </div>
         </motion.div>
 
         <motion.div className="text-center" variants={containerVariants} initial="hidden" animate="visible">
@@ -143,17 +184,62 @@ export default function HeroSection() {
           >
             <span className="block">Be First to Simplify</span>
             <span className="block bg-gradient-to-r from-[#6F42C1] to-[#4F46E5] bg-clip-text text-transparent">
-              AI Data Labeling.
+              AI Data Labeling
             </span>
           </motion.h1>
 
           <motion.p
-            className="text-lg md:text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto mb-10 leading-relaxed"
+            className="text-lg md:text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed"
             variants={itemVariants}
           >
-            ModelShip helps AI teams label data faster with AI-powered auto-labeling, easy review flows, and instant
-            export — finally making data prep less painful.
+            ModelShip helps AI teams label data <span className="text-[#6F42C1] font-semibold">70% faster</span> with AI-powered auto-labeling, 
+            easy review flows, and instant export — finally making data prep less painful.
           </motion.p>
+
+          {/* Social Proof Section */}
+          <motion.div 
+            className="flex flex-wrap justify-center gap-8 mb-10"
+            variants={itemVariants}
+          >
+            <div className="flex items-center">
+              <Users className="w-6 h-6 text-[#6F42C1] mr-2" />
+              <span className="text-gray-300">500+ Teams Joined</span>
+            </div>
+            <div className="flex items-center">
+              <Zap className="w-6 h-6 text-[#4F46E5] mr-2" />
+              <span className="text-gray-300">70% Faster Labeling</span>
+            </div>
+            <div className="flex items-center">
+              <Clock className="w-6 h-6 text-[#8C52FF] mr-2" />
+              <span className="text-gray-300">5min Setup Time</span>
+            </div>
+          </motion.div>
+
+          {/* Countdown Timer */}
+          <motion.div 
+            className="mb-10"
+            variants={itemVariants}
+          >
+            <div className="flex justify-center gap-4">
+              <div className="bg-[#1a1a3a]/50 backdrop-blur-sm px-4 py-2 rounded-lg border border-[#3B3A58]/30">
+                <div className="text-2xl font-bold text-white">{timeLeft.days}</div>
+                <div className="text-sm text-gray-400">Days</div>
+              </div>
+              <div className="bg-[#1a1a3a]/50 backdrop-blur-sm px-4 py-2 rounded-lg border border-[#3B3A58]/30">
+                <div className="text-2xl font-bold text-white">{timeLeft.hours}</div>
+                <div className="text-sm text-gray-400">Hours</div>
+              </div>
+              <div className="bg-[#1a1a3a]/50 backdrop-blur-sm px-4 py-2 rounded-lg border border-[#3B3A58]/30">
+                <div className="text-2xl font-bold text-white">{timeLeft.minutes}</div>
+                <div className="text-sm text-gray-400">Minutes</div>
+              </div>
+              <div className="bg-[#1a1a3a]/50 backdrop-blur-sm px-4 py-2 rounded-lg border border-[#3B3A58]/30">
+                <div className="text-2xl font-bold text-white">{timeLeft.seconds}</div>
+                <div className="text-sm text-gray-400">Seconds</div>
+              </div>
+            </div>
+            <div className="text-gray-400 mt-2">Until Beta Access Closes</div>
+          </motion.div>
 
           <motion.div variants={itemVariants}>
             <motion.button
@@ -165,8 +251,8 @@ export default function HeroSection() {
               }}
               whileTap={{ scale: 0.98 }}
             >
-              <span className="relative z-10 flex items-center">
-                Join The Waitlist
+              <span className="relative z-10 flex items-center" onClick={handleScrollToWaitlist}>
+                Join The Waitlist Now
                 <motion.svg
                   className="ml-2 w-5 h-5"
                   fill="none"
@@ -198,11 +284,13 @@ export default function HeroSection() {
       >
         <span className="text-gray-400 text-sm mb-2">Scroll to explore</span>
         <motion.div
-          className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center"
-          whileHover={{ borderColor: "#6F42C1" }}
+          className="w-6 h-10 border-2 border-gray-400 rounded-full p-1"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
         >
           <motion.div
-            className="w-1 h-3 bg-gray-400 rounded-full mt-2"
+            className="w-1 h-2 bg-gray-400 rounded-full mx-auto"
             animate={{ y: [0, 12, 0] }}
             transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5 }}
           />
