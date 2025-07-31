@@ -9,6 +9,7 @@ import AboutSection from "@/components/about-section"
 import WaitlistForm from "@/components/waitlist-form"
 import TrustSection from "@/components/trust-section"
 import Footer from "@/components/footer"
+import PerformanceOptimizer from "@/components/performance-optimizer"
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -16,7 +17,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoaded(true)
-    }, 2500)
+    }, 1500) // Reduced from 2500ms to 1500ms
 
     return () => clearTimeout(timer)
   }, [])
@@ -26,7 +27,7 @@ export default function Home() {
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.4, // Reduced from 0.6 to 0.4
         ease: "easeOut",
       },
     },
@@ -34,6 +35,7 @@ export default function Home() {
 
   return (
     <>
+      <PerformanceOptimizer />
       <LoadingScreen />
       <AnimatePresence>
         {isLoaded && (

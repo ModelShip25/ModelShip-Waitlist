@@ -23,8 +23,8 @@ const features = [
     description: "Automated data cleaning with anomaly detection, deduplication, and standardization.",
     color: "from-[#00B4D8] to-[#48CAE4]",
     metrics: {
-      before: "4 hours cleaning",
-      after: "15 mins cleaning",
+      before: "Hours cleaning small datasets",
+      after: "Mins cleaning large datasets",
       improvement: "16x faster"
     }
   },
@@ -33,7 +33,7 @@ const features = [
   {
     icon: <Bot className="h-8 w-8" />,
     title: "AI-powered Labeling",
-    description: "GPT-3.5 turbo auto-labels your data with 95%+ accuracy.",
+    description: "ModelShip auto-labels your data with 95%+ accuracy.",
     color: "from-[#4F46E5] to-[#6366F1]",
     metrics: {
       before: "100% manual work",
@@ -81,7 +81,7 @@ const features = [
   {
     icon: <FileJson className="h-8 w-8" />,
     title: "Instant Export",
-    description: "Export labeled data in CSV or JSON format with one click.",
+    description: "Export labeled data in CSV, JSON, and more formats with one click.",
     color: "from-[#6F42C1] to-[#8B5CF6]",
     metrics: {
       before: "Manual formatting",

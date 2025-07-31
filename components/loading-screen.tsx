@@ -10,7 +10,7 @@ export default function LoadingScreen() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false)
-    }, 2500)
+    }, 1500) // Reduced from 2500ms to 1500ms for faster loading
 
     return () => clearTimeout(timer)
   }, [])
@@ -34,12 +34,12 @@ export default function LoadingScreen() {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15 }, // Reduced from 20 to 15
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.4, // Reduced from 0.6 to 0.4
         ease: "easeOut",
       },
     },
@@ -50,7 +50,7 @@ export default function LoadingScreen() {
     visible: {
       width: "100%",
       transition: {
-        duration: 2,
+        duration: 1.5, // Reduced from 2 to 1.5
         ease: "easeInOut",
       },
     },
@@ -69,28 +69,28 @@ export default function LoadingScreen() {
           {/* Background animation */}
           <div className="absolute inset-0 overflow-hidden">
             <motion.div
-              className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-gradient-to-r from-[#6F42C1]/20 to-[#4F46E5]/20 blur-3xl"
+              className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full bg-gradient-to-r from-[#6F42C1]/20 to-[#4F46E5]/20 blur-3xl" // Reduced from w-96 h-96 to w-80 h-80
               animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3],
+                scale: [1, 1.1, 1], // Reduced from 1.2 to 1.1
+                opacity: [0.3, 0.5, 0.3], // Reduced from 0.6 to 0.5
               }}
               transition={{
                 repeat: Number.POSITIVE_INFINITY,
-                duration: 3,
+                duration: 2.5, // Reduced from 3 to 2.5
                 ease: "easeInOut",
               }}
             />
             <motion.div
-              className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-gradient-to-l from-[#8C52FF]/20 to-[#6F42C1]/20 blur-3xl"
+              className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-gradient-to-l from-[#8C52FF]/20 to-[#6F42C1]/20 blur-3xl" // Reduced from w-96 h-96 to w-80 h-80
               animate={{
-                scale: [1, 0.8, 1],
-                opacity: [0.3, 0.6, 0.3],
+                scale: [1, 0.9, 1], // Reduced from 0.8 to 0.9
+                opacity: [0.3, 0.5, 0.3], // Reduced from 0.6 to 0.5
               }}
               transition={{
                 repeat: Number.POSITIVE_INFINITY,
-                duration: 4,
+                duration: 3, // Reduced from 4 to 3
                 ease: "easeInOut",
-                delay: 1,
+                delay: 0.5, // Reduced from 1 to 0.5
               }}
             />
           </div>

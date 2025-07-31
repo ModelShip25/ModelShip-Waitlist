@@ -42,7 +42,7 @@ export default function HeroSection() {
   }, [])
 
   const handleScrollToWaitlist = () => {
-    const waitlistSection = document.getElementById("waitlist")
+    const waitlistSection = document.getElementById("waitlist-form")
     if (waitlistSection) {
       waitlistSection.scrollIntoView({ behavior: "smooth" })
     }
@@ -60,12 +60,12 @@ export default function HeroSection() {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 }, // Reduced from 30 to 20
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.6, // Reduced from 0.8 to 0.6
         ease: "easeOut",
       },
     },
@@ -86,6 +86,8 @@ export default function HeroSection() {
     <section
       ref={ref}
       className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden"
+      aria-labelledby="hero-heading"
+      role="banner"
     >
       {/* Enhanced background with multiple layers */}
       <motion.div className="absolute inset-0" style={{ y, opacity }}>
@@ -98,45 +100,45 @@ export default function HeroSection() {
         <motion.div
           className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-[#6F42C1] to-[#4F46E5] opacity-20 blur-3xl"
           animate={{
-            x: [0, 30, 0],
-            y: [0, -20, 0],
-            scale: [1, 1.1, 1],
+            x: [0, 20, 0], // Reduced from 30 to 20
+            y: [0, -15, 0], // Reduced from -20 to -15
+            scale: [1, 1.05, 1], // Reduced from 1.1 to 1.05
           }}
           transition={{
             repeat: Number.POSITIVE_INFINITY,
-            duration: 12,
+            duration: 8, // Reduced from 12 to 8
             ease: "easeInOut",
           }}
         />
         <motion.div
           className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-gradient-to-l from-[#4F46E5] to-[#8C52FF] opacity-15 blur-3xl"
           animate={{
-            x: [0, -25, 0],
-            y: [0, 25, 0],
-            scale: [1, 0.9, 1],
+            x: [0, -15, 0], // Reduced from -25 to -15
+            y: [0, 15, 0], // Reduced from 25 to 15
+            scale: [1, 0.95, 1], // Reduced from 0.9 to 0.95
           }}
           transition={{
             repeat: Number.POSITIVE_INFINITY,
-            duration: 15,
+            duration: 10, // Reduced from 15 to 10
             ease: "easeInOut",
           }}
         />
         <motion.div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-conic from-[#6F42C1]/10 via-[#4F46E5]/5 to-[#8C52FF]/10 blur-3xl"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-conic from-[#6F42C1]/10 via-[#4F46E5]/5 to-[#8C52FF]/10 blur-3xl" // Reduced from 800px to 600px
           animate={{
             rotate: [0, 360],
           }}
           transition={{
             repeat: Number.POSITIVE_INFINITY,
-            duration: 60,
+            duration: 40, // Reduced from 60 to 40
             ease: "linear",
           }}
         />
       </div>
 
-      {/* Floating particles */}
+      {/* Floating particles - Reduced count for performance */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(10)].map((_, i) => ( // Reduced from 20 to 10 particles
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-white/20 rounded-full"
@@ -145,13 +147,13 @@ export default function HeroSection() {
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [0, -100, 0],
+              y: [0, -80, 0], // Reduced from -100 to -80
               opacity: [0, 1, 0],
             }}
             transition={{
               repeat: Number.POSITIVE_INFINITY,
-              duration: 3 + Math.random() * 4,
-              delay: Math.random() * 2,
+              duration: 2 + Math.random() * 3, // Reduced duration
+              delay: Math.random() * 1.5, // Reduced delay
               ease: "easeInOut",
             }}
           />
@@ -179,6 +181,7 @@ export default function HeroSection() {
 
         <motion.div className="text-center" variants={containerVariants} initial="hidden" animate="visible">
           <motion.h1
+            id="hero-heading"
             className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-gray-300"
             variants={itemVariants}
           >
